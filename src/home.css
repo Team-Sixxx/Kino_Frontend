@@ -1,0 +1,24 @@
+.home-container {
+    width: 100%;
+    margin: 0; /* Reset margin */
+    position: absolute;
+    left: 0%;
+    top: 0%;
+    padding: 0%;
+  }
+  
+  .box {
+    position: absolute;
+    width: 100%;
+    left: 0%;
+    transition: transform 0.3s ease-in-out; /* Add transition for smooth effect */
+  }
+
+  .box video {
+    top: 0;
+    left: 0;
+  }
+
+  .box video:hover {
+    filter: brightness(0.7); /* Darken the box */
+}

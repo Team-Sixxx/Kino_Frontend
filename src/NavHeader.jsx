@@ -1,22 +1,33 @@
-import { NavLink } from "react-router-dom";
+import React from 'react';
+import { NavLink } from 'react-router-dom';
 
-export default function NavHeader() {
+const NavHeader = () => {
   return (
-    <nav>
+    <nav className="nav-header">
       <ul>
         <li>
-          <NavLink exact to="/">Home</NavLink>
+        <h1 style={{ fontStyle: 'italic' }}>Team KINO</h1>
+        </li>
+      </ul>
+      <ul>
+      <li>
+          <NavLink exact to="/" activeClassName="active">Home</NavLink>
         </li>
         <li>
-          <NavLink to="/movies">Movies</NavLink>
+          <NavLink to="/movies" activeClassName="active">Movies</NavLink>
+        </li>
+      </ul>
+      <ul style={{ paddingLeft: '10px' }}>
+
+        <li>
+          <NavLink to="/login" activeClassName="active">Login</NavLink>
         </li>
         <li>
-          <NavLink to="/login">Login</NavLink>
-        </li>
-        <li>
-          <NavLink to="/logout">Logout</NavLink>
+          <NavLink to="/logout" activeClassName="active">Logout</NavLink>
         </li>
       </ul>
     </nav>
   );
-}
+};
+
+export default NavHeader;
