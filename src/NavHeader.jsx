@@ -16,6 +16,9 @@ export default function NavHeader() {
         <li>
           <NavLink to="/logout">Logout</NavLink>
         </li>
+        <li>
+          <NavLink to="/users">UserPage</NavLink>
+        </li>
       </ul>
     </nav>
   );

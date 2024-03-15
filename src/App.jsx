@@ -1,10 +1,11 @@
 import './App.css'
 import React from 'react';
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, UNSAFE_useScrollRestoration } from "react-router-dom";
 import Layout from "./Layout";
 
 import Home from "./Home";
 import Movies from "./Movies.jsx";
+import UserPage from './UserPage.jsx';
 
 //import MovieLayout from "./movie/MovieLayout"
 //import Movie from "./movie/Movie";
@@ -19,7 +20,7 @@ export default function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/movies/" element={<Movies />} />
-
+        <Route path="/users/" element={<UserPage />} />
 
 
         <Route path="*" element={<h2>Not Found</h2>} />

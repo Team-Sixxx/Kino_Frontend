@@ -1,50 +1,30 @@
+import React from "react";
 import { useState, useEffect } from "react";
-import axios from "axios";
+import useAxios from 'axios-hooks';
+
+import "./index.css";
 
 const UserPage = () => {
-  const [user, setUser] = useState(null);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get("https://api.example.com/user");
-        setUser(response.data);
-      } catch (error) {
-        console.error("Error fetching data: ", error);
-      }
-    };
+  console.log('UserPage');
+  const [{ data, loading, error }] = useAxios('http://localhost:3000/users');
 
-    fetchData();
-  }, []);
-
-  const handleEmailChange = (event) => {
-    setUser({ ...user, email: event.target.value });
-  };
-
-  const handlePasswordChange = (event) => {
-    setUser({ ...user, password: event.target.value });
-  };
-
-  const handleUsernameChange = (event) => {
-    setUser({ ...user, username: event.target.value });
-  };
-
-  if (!user) return <p>Loading...</p>;
-
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>Error!</p>;
+  
   return (
     <div>
-      <h1>User Information</h1>
-      <p>
-        Username: <input type="text" value={user.username} onChange={handleUsernameChange} />
-      </p>
-      <p>
-        Email: <input type="text" value={user.email} onChange={handleEmailChange} />
-      </p>
-      <p>
-        Password: <input type="password" value={user.password} onChange={handlePasswordChange} />
-      </p>
+  
+      {data.map(user => (
+        <div key={user.id}>
+          <p>Username: {user.username}</p>
+          <p>Email: {user.email}</p>
+          <p>Password: {user.password}</p>
+        </div>
+      ))}
     </div>
-  );
+  )
+  
 };
 
 export default UserPage;
