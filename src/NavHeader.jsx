@@ -1,33 +1,40 @@
-import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink } from "react-router-dom";
+import { useAuth } from "./context/AuthProvider";
 
-const NavHeader = () => {
+export default function NavHeader() {
+  const auth = useAuth();
   return (
     <nav className="nav-header">
       <ul>
         <li>
-        <h1 style={{ fontStyle: 'italic' }}>Team KINO</h1>
+          <h1 style={{ fontStyle: "italic" }}>Team KINO</h1>
         </li>
       </ul>
       <ul>
-      <li>
-          <NavLink exact to="/" activeClassName="active">Home</NavLink>
+        <li>
+          <NavLink to="/">Home</NavLink>
         </li>
         <li>
-          <NavLink to="/movies" activeClassName="active">Movies</NavLink>
+          <NavLink to="/movies">Movies</NavLink>
         </li>
       </ul>
-      <ul style={{ paddingLeft: '10px' }}>
+      <ul style={{ paddingLeft: "10px" }}>
+        {!auth.isLoggedIn() ? (
+          <>
+            <li>
+              <NavLink to="/login">Login</NavLink>
+            </li>
+          </>
+        ) : (
+          <>
+            {auth.username && <li>Logged in as {auth.username}</li>}
 
-        <li>
-          <NavLink to="/login" activeClassName="active">Login</NavLink>
-        </li>
-        <li>
-          <NavLink to="/logout" activeClassName="active">Logout</NavLink>
-        </li>
+            <li>
+              <NavLink to="/logout">Logout</NavLink>
+            </li>
+          </>
+        )}
       </ul>
     </nav>
   );
-};
-
-export default NavHeader;
+}
