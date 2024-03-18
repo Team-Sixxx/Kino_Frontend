@@ -10,9 +10,12 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@u-wave/react-vimeo": "^0.9.10",
     "axios-hooks": "^5.0.2",
+    "bootstrap": "^5.3.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-player": "^2.15.1",
     "react-router-dom": "^6.22.3",
     "react-youtube": "^10.1.0"
   },
@@ -24,6 +27,7 @@
     "eslint-plugin-react": "^7.34.0",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.5",
+    "sass": "^1.72.0",
     "vite": "^5.1.6"
   }
 }

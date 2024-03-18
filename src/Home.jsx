@@ -1,52 +1,33 @@
-import React, { useEffect, useState } from 'react';
-import YouTube from 'react-youtube';
+import React, { useEffect, useState } from "react";
+//import YouTube from "react-youtube";
+//import ReactPlayer from "react-player/lazy";
+import Vimeo from "@u-wave/react-vimeo";
+import { Tooltip, Toast, Popover } from "bootstrap";
+import "./Home.css";
 
 export default function Home() {
-    const [screenWidth, setScreenWidth] = useState(window.innerWidth);
-
-    useEffect(() => {
-        const handleResize = () => {
-            setScreenWidth(window.innerWidth);
-        };
-
-        window.addEventListener('resize', handleResize);
-
-        return () => {
-            window.removeEventListener('resize', handleResize);
-        };
-    }, []);
-
-    const onReady = event => {
-        event.target.playVideo();
-        event.target.mute();
-    };
-    const nextVideo = event => {
-        console.log("load video and slide to next trailer");
-    };
-    const viewMovie = event => {
-        console.log("display movie and details on side");
-    };
-
-    return (
-        <div className="home-container">
-            <div className="box">
-                <YouTube videoId="U2Qp5pL3ovA" opts={{ width: screenWidth, height: screenWidth*0.6 }} onReady={onReady}  onEnd={nextVideo} onPause={viewMovie}/>
-                
-            </div>
-            <div style={{ 
-              position: 'absolute',
-              top: screenWidth/4,
-              left: '2%',
-              zIndex:111,
-              background: 'rgba(0, 0, 0, 0.7)', 
-              padding: '1rem',
-              border: 'none',
-              maxWidth: '20%', 
-            }}>
-             <h1 style={{ marginBottom: '0.5rem', fontSize: `1em` }}>DUNE 2</h1>
-              <p style={{ marginBottom: '0', textAlign: 'center', fontSize: `0.5em` }}>Paul Atreides unites with Chani and the Fremen while on a warpath of revenge against the conspirators who destroyed his family. Facing a choice between the love of his life and the fate of the known universe, he endeavors to prevent a terrible future only he can foresee.</p>
-            </div>
-
+  const [isVimeoSource, setIsVimeoSource] = useState(false);
+  return (
+    <div className="container-fluid">
+      <div className="row justify-content-center p-5 mt-5">
+        <div className="col-md-12">
+          <div className="video-container">
+            <video
+              className="full-screen-video"
+              width="100%"
+              playsInline
+              autoPlay
+              muted
+              loop
+            >
+              <source
+                src="https://res.cloudinary.com/dlf5gecrf/video/upload/v1658606508/benjaminkratzin-website/BenjaminKratzin_DirectorReel_220722_Desktop_858p_4Mbs_v01_g2ufkx.mp4"
+                type="video/mp4"
+              />
+            </video>
+          </div>
         </div>
-    );
+      </div>
+    </div>
+  );
 }

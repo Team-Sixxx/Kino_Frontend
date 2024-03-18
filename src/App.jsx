@@ -1,5 +1,4 @@
 import "./App.css";
-import React from "react";
 import { Route, Routes } from "react-router-dom";
 import Layout from "./Layout";
 
@@ -8,7 +7,7 @@ import Logout from "./components/logout.jsx";
 
 import Home from "./Home";
 import Movies from "./Movies.jsx";
-
+import "./scss/styles.scss";
 //import MovieLayout from "./movie/MovieLayout"
 //import Movie from "./movie/Movie";
 
