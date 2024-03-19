@@ -1,0 +1,38 @@
+.movies-container {
+    display: flex;
+    flex-wrap: wrap;
+    padding-top: 6rem;
+}
+  
+  .movie-card {
+    width: calc(16.666% - 20px); /* Adjusted width to fit six cards per row with margins */
+    margin: 0 1%; /* Adjusted margin for spacing */
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .movie-image {
+    width: 100%;
+    height: auto;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+  }
+  
+  .card-title {
+    height: auto; 
+    overflow: hidden;
+    text-overflow: ellipsis; 
+    white-space: nowrap; 
+  }
+  
+  .card-description {
+    max-height: 3em; 
+    text-overflow: ellipsis; 
+    overflow: hidden; 
+
+  }
+  
+  .movie-details {
+    padding: 10px;
+  }

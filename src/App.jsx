@@ -20,6 +20,7 @@ export default function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/movies/" element={<Movies />} />
+        
 
         <Route path="*" element={<h2>Not Found</h2>} />
         <Route path="/login" element={<Login />} />
