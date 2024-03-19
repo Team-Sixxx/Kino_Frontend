@@ -20,7 +20,7 @@ function PaperComponent(props) {
   );
 }
 
-export default function FormDialog() {
+export default function FormDialog({userData}) {
   const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = () => {
@@ -29,39 +29,76 @@ export default function FormDialog() {
 
   const handleClose = () => {
     setOpen(false);
+  }
+  const handleSave = () => {
+    setOpen(false);
   };
 
   return (
     <React.Fragment>
       <Button variant="outlined" onClick={handleClickOpen}>
-        Open form dialog
+        Edit User
       </Button>
       <Dialog
         open={open}
         onClose={handleClose}
-        PaperComponent={PaperComponent} // Her bruges PaperComponent
+        PaperComponent={PaperComponent}
       >
-        <DialogTitle id="draggable-dialog-title">Subscribe</DialogTitle>
+        <DialogTitle id="draggable-dialog-title">Edit user information</DialogTitle>
         <DialogContent>
-          <DialogContentText>
-            To subscribe to this website, please enter your email address here. We
-            will send updates occasionally.
-          </DialogContentText>
+
           <TextField
             autoFocus
             required
             margin="dense"
-            id="name"
+            id="email"
             name="email"
             label="Email Address"
             type="email"
             fullWidth
             variant="standard"
+            defaultValue={userData.email}
+          />
+          <TextField
+            autoFocus
+            required
+            margin="dense"
+            id="name"
+            name="name"
+            label="Name"
+            type="text"
+            fullWidth
+            variant="standard"
+            defaultValue={userData.name}
+          />
+          <TextField
+            autoFocus
+            required
+            margin="dense"
+            id="password"
+            name="password"
+            label="Password"
+            type="password"
+            fullWidth
+            variant="standard"
+            defaultValue={userData.password}
+          />
+          <TextField
+            autoFocus
+            required
+            margin="dense"
+            id="username"
+            name="username"
+            label="Username"
+            type="text"
+            fullWidth
+            variant="standard"
+            defaultValue={userData.username}
           />
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>Cancel</Button>
-          <Button onClick={handleClose}>Subscribe</Button>
+          <Button onClick={handleSave}>Save</Button>
         </DialogActions>
       </Dialog>
     </React.Fragment>
