@@ -1,0 +1,33 @@
+.seat-selector {
+    text-align: center;
+}
+
+.seat-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.buy-menu {
+    display: flex;
+    justify-content: right;
+}
+
+.seat {
+    width: 40px;
+    height: 40px;
+    margin: 5px;
+    background-color: green;
+    border: 1px solid #ccc;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.seat.selected {
+    background-color: rgb(159, 27, 247);
+}
+
+.seat.taken {
+    background-color: rgb(247, 27, 27);
+}

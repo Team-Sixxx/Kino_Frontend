@@ -7,6 +7,7 @@ import Logout from "./components/logout.jsx";
 
 import Home from "./Home";
 import Movies from "./Movies.jsx";
+import SeatSelector from "./SeatSelectorPage.jsx";
 import "./scss/styles.scss";
 //import MovieLayout from "./movie/MovieLayout"
 //import Movie from "./movie/Movie";
@@ -20,7 +21,7 @@ export default function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/movies/" element={<Movies />} />
-
+        <Route path="/select" element={<SeatSelector />} />
         <Route path="*" element={<h2>Not Found</h2>} />
         <Route path="/login" element={<Login />} />
         <Route path="/logout" element={<Logout />} />
