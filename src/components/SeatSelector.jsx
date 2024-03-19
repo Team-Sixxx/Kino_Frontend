@@ -1,11 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import '../SeatSelector.css';
 
-const SeatSelector = ({ numRows, numSeatsPerRow, seatsStatus }) => {
+const SeatSelector = ({ numRows, numSeatsPerRow, seatsStatus, onSeatSelect }) => {
     const [selectedSeats, setSelectedSeats] = useState([]);
 
+    useEffect(() => {
+        onSeatSelect(selectedSeats);
+    }, [selectedSeats, onSeatSelect]);
+
     const handleSeatClick = (rowIndex, seatIndex) => {
-        const seatNumber = seatIndex + 1;
         if (selectedSeats.some(seat => seat.row === rowIndex && seat.seat === seatIndex)) {
             setSelectedSeats(selectedSeats.filter(seat => !(seat.row === rowIndex && seat.seat === seatIndex)));
         } else {
@@ -20,11 +23,11 @@ const SeatSelector = ({ numRows, numSeatsPerRow, seatsStatus }) => {
             for (let seat = 0; seat < numRows; seat++) {
                 const key = `${row}-${seat}`;
 
-                if (seatsStatus[key] != "available") {
+                if (seatsStatus[key] !== "available") { // all seats are taken until data (use == "available" for testing)
                     rowSeats.push(
                         <div
                             key={key}
-                            className={"seat taken"} //All seats are taken until better data in SeatSelectorPage
+                            className={"seat taken"}
                         >
                             {row}
                         </div>
