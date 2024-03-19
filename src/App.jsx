@@ -1,10 +1,11 @@
-import './App.css'
-import React from 'react';
+import "./App.css";
+//import React from "react";
 import { Route, Routes } from "react-router-dom";
 import Layout from "./Layout";
 
 import Home from "./Home";
 import Movies from "./Movies.jsx";
+import UserPage from "./UserPage.jsx";
 
 //import MovieLayout from "./movie/MovieLayout"
 //import Movie from "./movie/Movie";
@@ -12,15 +13,13 @@ import Movies from "./Movies.jsx";
 //import Login from "./security/Login";
 //import Logout from "./security/Logout"
 
-
 export default function App() {
   return (
     <Layout>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/movies/" element={<Movies />} />
-
-
+        <Route path="/user" element={<UserPage />} />
 
         <Route path="*" element={<h2>Not Found</h2>} />
       </Routes>
@@ -28,8 +27,7 @@ export default function App() {
   );
 }
 
-
-//<Route path="/movie" element={<MovieLayout/>}>          
+//<Route path="/movie" element={<MovieLayout/>}>
 //  <Route path=":id" element={<Movie />} />
 //</Route>
 
