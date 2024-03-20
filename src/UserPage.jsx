@@ -1,30 +1,30 @@
-import { useState } from "react";
+import React from "react";
+import { useState, useEffect } from "react";
+import useAxios from 'axios-hooks';
+
+import "./index.css";
 
 const UserPage = () => {
-  // Fetch user information from an API or any other data source
-  const [user, setUser] = useState({
-    name: "John Doe",
-    email: "johndoe@example.com",
-    age: 30,
-    // Add more properties as needed
-  });
 
-  const handleEmailChange = (event) => {
-    setUser({ ...user, email: event.target.value });
-  };
+  console.log('UserPage');
+  const [{ data, loading, error }] = useAxios('http://localhost:3000/users');
 
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>Error!</p>;
+  
   return (
     <div>
-      <h1>User Information</h1>
-      <p>Name: {user.name}</p>
-      <p>
-        Email: <input type="text" value={user.email} onChange={handleEmailChange} />
-      </p>
-      <p>Age: {user.age}</p>
-      <button>edit</button>
-      {/* Add more JSX elements to display additional user information */}
+  
+      {data.map(user => (
+        <div key={user.id}>
+          <p>Username: {user.username}</p>
+          <p>Email: {user.email}</p>
+          <p>Password: {user.password}</p>
+        </div>
+      ))}
     </div>
-  );
+  )
+  
 };
 
 export default UserPage;

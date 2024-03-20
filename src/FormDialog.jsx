@@ -1,50 +1,69 @@
-import React, { useState } from "react";
-import PropTypes from "prop-types"; // Importer PropTypes
-import Button from "@mui/material/Button";
-import TextField from "@mui/material/TextField";
-import DialogActions from "@mui/material/DialogActions";
-import DialogContent from "@mui/material/DialogContent";
-import DialogContentText from "@mui/material/DialogContentText";
-import DialogTitle from "@mui/material/DialogTitle";
+import * as React from 'react';
+import Button from '@mui/material/Button';
+import TextField from '@mui/material/TextField';
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
+import Paper from '@mui/material/Paper';
+import Draggable from 'react-draggable';
 
-const FormDialog = ({ initialData, onSubmit, onClose }) => {
-  const [formData, setFormData] = useState(initialData);
+function PaperComponent(props) {
+  return (
+    <Draggable
+      handle="#draggable-dialog-title"
+      cancel={'[class*="MuiDialogContent-root"]'}
+    >
+      <Paper {...props} />
+    </Draggable>
+  );
+}
 
-  const handleChange = (event) => {
-    const { name, value } = event.target;
-    setFormData({ ...formData, [name]: value });
+export default function FormDialog() {
+  const [open, setOpen] = React.useState(false);
+
+  const handleClickOpen = () => {
+    setOpen(true);
   };
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    onSubmit(formData);
-    onClose();
+  const handleClose = () => {
+    setOpen(false);
   };
 
   return (
     <React.Fragment>
-      <DialogTitle>Edit User Information</DialogTitle>
-      <DialogContent>
-        <DialogContentText>You can edit your information here.</DialogContentText>
-        <form onSubmit={handleSubmit}>
-          <TextField autoFocus margin="dense" id="email" name="email" label="Email Address" type="email" fullWidth variant="standard" value={formData.email} onChange={handleChange} />
-          <TextField margin="dense" id="name" name="name" label="Name" type="text" fullWidth variant="standard" value={formData.name} onChange={handleChange} />
-          <TextField margin="dense" id="age" name="age" label="Age" type="age" fullWidth variant="standard" value={formData.age} onChange={handleChange} />
-          <DialogActions>
-            <Button onClick={onClose}>Cancel</Button>
-            <Button type="submit">Save Changes</Button>
-          </DialogActions>
-        </form>
-      </DialogContent>
+      <Button variant="outlined" onClick={handleClickOpen}>
+        Open form dialog
+      </Button>
+      <Dialog
+        open={open}
+        onClose={handleClose}
+        PaperComponent={PaperComponent} // Her bruges PaperComponent
+      >
+        <DialogTitle id="draggable-dialog-title">Subscribe</DialogTitle>
+        <DialogContent>
+          <DialogContentText>
+            To subscribe to this website, please enter your email address here. We
+            will send updates occasionally.
+          </DialogContentText>
+          <TextField
+            autoFocus
+            required
+            margin="dense"
+            id="name"
+            name="email"
+            label="Email Address"
+            type="email"
+            fullWidth
+            variant="standard"
+          />
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleClose}>Cancel</Button>
+          <Button onClick={handleClose}>Subscribe</Button>
+        </DialogActions>
+      </Dialog>
     </React.Fragment>
   );
-};
-
-// Tilføj props validering
-FormDialog.propTypes = {
-  initialData: PropTypes.object.isRequired,
-  onSubmit: PropTypes.func.isRequired,
-  onClose: PropTypes.func.isRequired,
-};
-
-export default FormDialog;
+}
