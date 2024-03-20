@@ -1,30 +1,30 @@
-import React from "react";
-import { useState, useEffect } from "react";
-import useAxios from 'axios-hooks';
-
-import "./index.css";
+import { useState } from "react";
+import FormDialog from "./FormDialog";
 
 const UserPage = () => {
+  const [userData, setUserData] = useState({
+    name: "John Doe",
+    email: "johndoe@example.com",
+    password: "password123",
+    username: "johndoe123",
+  });
 
-  console.log('UserPage');
-  const [{ data, loading, error }] = useAxios('http://localhost:3000/users');
+  const handleUpdateUserData = (updatedData) => {
+    setUserData(updatedData);
+    // Her kan du tilføje logik til at opdatere brugerdata på serveren
+  };
 
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>Error!</p>;
-  
   return (
     <div>
-  
-      {data.map(user => (
-        <div key={user.id}>
-          <p>Username: {user.username}</p>
-          <p>Email: {user.email}</p>
-          <p>Password: {user.password}</p>
-        </div>
-      ))}
+      <h1>User Information</h1>
+      <p>Name: {userData.name}</p>
+      <p>Email: {userData.email}</p>
+      <p>Password: {userData.password}</p>
+      <p>Username: {userData.username}</p>
+      {/* Andre brugerinformationer */}
+      <FormDialog userData={userData} onUpdateUserData={handleUpdateUserData} />
     </div>
-  )
-  
+  );
 };
 
 export default UserPage;
