@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { useParams,NavLink } from 'react-router-dom';
+import './movie.css'; 
 
 function Movie() {
     const { id } = useParams();
 
     const [movie, setMovie] = useState({
         title: "Mock Movie Title",
-        image: "https://via.placeholder.com/150",
+        trailer: "https://via.placeholder.com/150",
         description: "This is a mock movie description.",
         genre: "Action",
         ageRating: "PG-13",
@@ -27,7 +28,7 @@ function Movie() {
   return (
     <div>
         <h1>{movie.title}</h1>
-        <img src={movie.image} alt={movie.title}/>
+        <img src={movie.trailer} alt={movie.title}/>
         <p >{movie.description}</p>
         <p>Genre: {movie.genre}</p>
         <p >Age Rating: {movie.ageRating}</p>
