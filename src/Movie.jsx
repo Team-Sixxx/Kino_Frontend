@@ -34,7 +34,7 @@ function Movie() {
         <p >Movie Rating: {movie.movieRating}</p>
         <p >Director: {movie.director}</p>
         <NavLink to={`/select/${id}`}>
-            <button>Buy Tickets</button>
+          <button>Select Seats</button>
         </NavLink>
     </div>
   );
