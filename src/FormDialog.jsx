@@ -48,7 +48,6 @@ export default function FormDialog({ userData, onUpdateUserData }) {
       <Dialog open={open} onClose={handleClose} PaperComponent={PaperComponent}>
         <DialogTitle id="draggable-dialog-title">Edit user information</DialogTitle>
         <DialogContent>
-          <DialogContentText>To subscribe to this website, please enter your email address here. We will send updates occasionally.</DialogContentText>
           <TextField autoFocus required margin="dense" id="email" name="email" label="Email Address" type="email" fullWidth variant="standard" value={formData.email} onChange={handleChange} />
           <TextField autoFocus required margin="dense" id="name" name="name" label="Name" type="text" fullWidth variant="standard" value={formData.name} onChange={handleChange} />
           <TextField autoFocus required margin="dense" id="password" name="password" label="Password" type="password" fullWidth variant="standard" value={formData.password} onChange={handleChange} />
