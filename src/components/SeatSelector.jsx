@@ -23,7 +23,7 @@ const SeatSelector = ({ numRows, numSeatsPerRow, seatsStatus, onSeatSelect }) =>
             for (let seat = 0; seat < numRows; seat++) {
                 const key = `${row}-${seat}`;
 
-                if (seatsStatus[key] !== "available") { // all seats are taken until data (use == "available" for testing)
+                if (seatsStatus[key] == "Sold" || seatsStatus[key] == "Reserved") { // all seats are taken until data (use == "available" for testing)
                     rowSeats.push(
                         <div
                             key={key}
@@ -32,7 +32,18 @@ const SeatSelector = ({ numRows, numSeatsPerRow, seatsStatus, onSeatSelect }) =>
                             {row}
                         </div>
                     );
-                } else {
+                } else if (seatsStatus[key] == "Unavailable"){
+                    rowSeats.push(
+                        <div
+                            key={key}
+                            className={"seat una"}
+                        >
+                            {row}
+                        </div>
+                    );
+                }
+
+                else {
                     rowSeats.push(
                         <div
                             key={key}
