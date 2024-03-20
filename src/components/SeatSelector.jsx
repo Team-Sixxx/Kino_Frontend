@@ -18,12 +18,12 @@ const SeatSelector = ({ numRows, numSeatsPerRow, seatsStatus, onSeatSelect }) =>
 
     const renderSeats = () => {
         const seats = [];
-        for (let row = 0; row < numSeatsPerRow; row++) {
+        for (let row = 1; row < numSeatsPerRow+1; row++) {
             const rowSeats = [];
             for (let seat = 0; seat < numRows; seat++) {
                 const key = `${row}-${seat}`;
 
-                if (seatsStatus[key] !== "available") { // all seats are taken until data (use == "available" for testing)
+                if (seatsStatus[key] == "available") { // all seats are taken until data (use == "available" for testing)
                     rowSeats.push(
                         <div
                             key={key}
@@ -51,7 +51,13 @@ const SeatSelector = ({ numRows, numSeatsPerRow, seatsStatus, onSeatSelect }) =>
 
     return (
         <div className="seat-selector">
-            <h2>Seat Selector</h2>
+            <h2 style={{ color: 'white' }}>Seat Selector</h2>
+            <br></br>
+            <div style={{ textAlign: "center" }}>
+                <hr style={{ display: "block", margin: "auto", width: "30%", height: "0.3em", backgroundColor: "black" }} />
+            </div>
+
+            <p style={{ color: 'grey' }}>Screen</p>
             <div className="seat-grid">
                 {renderSeats()}
             </div>
