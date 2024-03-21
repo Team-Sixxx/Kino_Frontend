@@ -1,12 +1,22 @@
 import React, { useEffect, useState } from "react";
-//import YouTube from "react-youtube";
-//import ReactPlayer from "react-player/lazy";
-import Vimeo from "@u-wave/react-vimeo";
 import { Tooltip, Toast, Popover } from "bootstrap";
-import "./Home.css";
+import useAxios from "axios-hooks";
+import MovieCalendar from "./components/calendar";
+import { API_URL } from "./settings";
+import { Skeleton } from "@mui/material";
 
 export default function Home() {
-  const [isVimeoSource, setIsVimeoSource] = useState(false);
+  const SCREENINGS_URL = API_URL + "/api/film/screenings/1";
+
+  const [
+    { data: screenings, loading: postLoading, error: postError },
+    execute,
+  ] = useAxios();
+
+  useEffect(() => {
+    execute(SCREENINGS_URL);
+  }, []); // Ensure that the effect runs only once, when the component mounts
+
   return (
     <div className="container-fluid">
       <div className="row justify-content-center p-5 mt-5">
@@ -26,6 +36,11 @@ export default function Home() {
               />
             </video>
           </div>
+          {postLoading ? (
+            <Skeleton variant="rectangular" width={610} height={318} />
+          ) : (
+            <MovieCalendar data={screenings} />
+          )}
         </div>
       </div>
     </div>
