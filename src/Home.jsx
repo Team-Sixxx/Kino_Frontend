@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 //import ReactPlayer from "react-player/lazy";
 import Vimeo from "@u-wave/react-vimeo";
 import { Tooltip, Toast, Popover } from "bootstrap";
-import "./Home.css";
+import "./home.css";
 
 export default function Home() {
   const [isVimeoSource, setIsVimeoSource] = useState(false);

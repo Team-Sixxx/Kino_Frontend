@@ -17,6 +17,9 @@ export default function NavHeader() {
         <li>
           <NavLink to="/movies">Movies</NavLink>
         </li>
+        <li>
+          <NavLink to="/admin">Admin</NavLink>
+        </li>
       </ul>
       <ul style={{ paddingLeft: "10px" }}>
         {!auth.isLoggedIn() ? (
