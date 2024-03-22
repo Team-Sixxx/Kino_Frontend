@@ -13,10 +13,6 @@ const SeatSelectorPage = () => {
         method: 'GET'
     });
 
-    var numRows = 10;
-    var numSeatsPerRow = 12;
-    var seatsStatus = "none";
-
 
     const [selectedSeats, setSelectedSeats] = useState([]);
     const [showPopup, setShowPopup] = useState(false);
