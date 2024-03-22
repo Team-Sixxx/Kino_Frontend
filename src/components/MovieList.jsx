@@ -10,6 +10,7 @@ function MovieList() {
   useEffect(() => {
     execute(`${API_URL}/api/films`);
   }, []);
+  console.log(data);
 
   return (
     <div className="movies-container">
@@ -23,7 +24,8 @@ function MovieList() {
           <>
             {data.map((movie, index) => (
               <div key={index} className="col-md-2">
-                <NavLink style={{ textDecoration: "none" }} to={"/movie/" + movie.id}>
+                <NavLink style={{ textDecoration: "none" }} to={"/movie/" + movie.filmId}>
+                  <p>{movie.id}</p>
                   <div className="card mb-3">
                     <div className="movie-image-container">
                       <img src={movie.image} alt={movie.title} className="movie-image" />
