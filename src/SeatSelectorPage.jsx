@@ -41,6 +41,11 @@ const SeatSelectorPage = () => {
         //link to temp buy page
     };
 
+    const reserveTickets = () => {
+        setShowPopup(false);
+        //link to temp reserve page or combi buy/reserve page
+    };
+
     //change seat.price
     return (
         <div>
@@ -59,7 +64,8 @@ const SeatSelectorPage = () => {
                             </React.Fragment>
                           ))}
                         </p>
-                        <button className="buy-button" onClick={buyTickets}>Buy</button>
+                        <button className="buy-button" onClick={buyTickets}>Buy Tickets</button>
+                        <button className="buy-button" onClick={reserveTickets}>Reserve Tickets</button>
                     </div>
                 </div>
             )}

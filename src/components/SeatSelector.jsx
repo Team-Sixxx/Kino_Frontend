@@ -2,26 +2,31 @@ import React, { useState, useEffect } from 'react';
 import '../SeatSelector.css';
 
 const SeatSelector = ({ numRows, numSeatsPerRow, seatsStatus, onSeatSelect }) => {
+    // Dont need numRows and numSeatsPerRow if seatsStatus has coords
+
     const [selectedSeats, setSelectedSeats] = useState([]);
 
     useEffect(() => {
         onSeatSelect(selectedSeats);
+        console.log(selectedSeats);
+
     }, [selectedSeats, onSeatSelect]);
 
     const handleSeatClick = (rowIndex, seatIndex) => {
-        if (selectedSeats.some(seat => seat.row === rowIndex && seat.seat === seatIndex)) {
-            setSelectedSeats(selectedSeats.filter(seat => !(seat.row === rowIndex && seat.seat === seatIndex)));
+        if (selectedSeats.some(seat => seat.row === seatIndex && seat.seat === rowIndex)) {
+            setSelectedSeats(selectedSeats.filter(seat => !(seat.row === seatIndex && seat.seat === rowIndex)));
         } else {
-            setSelectedSeats([...selectedSeats, { row: rowIndex, seat: seatIndex }]);
+            setSelectedSeats([...selectedSeats, { row: seatIndex, seat: rowIndex }]);
         }
     };
+    
 
     const renderSeats = () => {
         const seats = [];
         for (let row = 1; row < numSeatsPerRow+1; row++) {
             const rowSeats = [];
-            for (let seat = 0; seat < numRows; seat++) {
-                const key = `${row}-${seat}`;
+            for (let seat = 1; seat < numRows+1; seat++) {
+                const key = `${row},${seat}`;
 
                 if (seatsStatus[key] == "Sold" || seatsStatus[key] == "Reserved") { // all seats are taken until data (use == "available" for testing)
                     rowSeats.push(
@@ -47,12 +52,14 @@ const SeatSelector = ({ numRows, numSeatsPerRow, seatsStatus, onSeatSelect }) =>
                     rowSeats.push(
                         <div
                             key={key}
-                            className={`seat ${selectedSeats.some(selectedSeat => selectedSeat.seat === seat && selectedSeat.row === row) ? 'selected' : ''}`}
-                            onClick={() => handleSeatClick(row, seat)}
+                            className={`seat ${selectedSeats.some(selectedSeat => selectedSeat.seat === row && selectedSeat.row === seat) ? 'selected' : ''}`}
+                            onClick={() => handleSeatClick(row, seat)} // Pass row first and then seat
                         >
                             {row}
                         </div>
                     );
+                    
+                    
                 }
             }
             seats.push(<div key={row} className="seat-row">{rowSeats}</div>);
