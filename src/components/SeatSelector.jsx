@@ -8,8 +8,6 @@ const SeatSelector = ({ numRows, numSeatsPerRow, seatsStatus, onSeatSelect }) =>
 
     useEffect(() => {
         onSeatSelect(selectedSeats);
-        console.log(selectedSeats);
-
     }, [selectedSeats, onSeatSelect]);
 
     const handleSeatClick = (rowIndex, seatIndex) => {
@@ -28,7 +26,18 @@ const SeatSelector = ({ numRows, numSeatsPerRow, seatsStatus, onSeatSelect }) =>
             for (let seat = 1; seat < numRows+1; seat++) {
                 const key = `${row},${seat}`;
 
-                if (seatsStatus[key] == "Sold" || seatsStatus[key] == "Reserved") { // all seats are taken until data (use == "available" for testing)
+                if (role === admin){
+                    rowSeats.push(
+                        <div
+                            key={key}
+                            className={`seat ${selectedSeats.some(selectedSeat => selectedSeat.seat === row && selectedSeat.row === seat) ? 'selected' : ''}`}
+                            onClick={() => handleSeatClick(row, seat, seatsStatus[key].price)} 
+                        >
+                            {row}
+                        </div>
+                    );
+                }
+                else if (seatsStatus[key] == "Sold" || seatsStatus[key] == "Reserved") {
                     rowSeats.push(
                         <div
                             key={key}
@@ -53,7 +62,7 @@ const SeatSelector = ({ numRows, numSeatsPerRow, seatsStatus, onSeatSelect }) =>
                         <div
                             key={key}
                             className={`seat ${selectedSeats.some(selectedSeat => selectedSeat.seat === row && selectedSeat.row === seat) ? 'selected' : ''}`}
-                            onClick={() => handleSeatClick(row, seat)} // Pass row first and then seat
+                            onClick={() => handleSeatClick(row, seat, seatsStatus[key].price)} 
                         >
                             {row}
                         </div>

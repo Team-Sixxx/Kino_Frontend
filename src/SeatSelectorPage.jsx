@@ -1,12 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import SeatSelector from './components/SeatSelector';
 import './SeatSelectorPage.css'; 
-import { useParams } from 'react-router-dom';
+import { useParams , NavLink } from 'react-router-dom';
+import { useAxios } from 'use-axios-client'; 
 
 const SeatSelectorPage = () => {
     const { id } = useParams(); 
 
-    //useAxios Fetch tickets with idS
+
+    const { data, loading, error, get } = useAxios({
+        url: `api/tickets/screening/${id}`,
+        method: 'GET'
+    });
+
     var numRows = 10;
     var numSeatsPerRow = 12;
     var seatsStatus = "none";
@@ -36,17 +42,24 @@ const SeatSelectorPage = () => {
         setShowPopup(false);
     };
     
-    const buyTickets = () => {
+
+    //not done
+    const handleTickets = async (action) => {
         setShowPopup(false);
-        //link to temp buy page
+        try {
+            const response = await useAxios({
+                url: action === 'buy' ? 'api/tickets/buy' : 'api/tickets/reserve',
+                method: 'POST',
+                data: {
+                    selectedSeats: selectedSeats
+                }
+            });
+            console.log(`${action} tickets response:`, response.data);
+        } catch (error) {
+            console.error(`Error ${action === 'buy' ? 'buying' : 'reserving'} tickets:`, error);
+        }
     };
 
-    const reserveTickets = () => {
-        setShowPopup(false);
-        //link to temp reserve page or combi buy/reserve page
-    };
-
-    //change seat.price
     return (
         <div>
             <SeatSelector numRows={numRows} numSeatsPerRow={numSeatsPerRow} seatsStatus={seatsStatus} onSeatSelect={handleSeatSelect} />            
@@ -59,13 +72,15 @@ const SeatSelectorPage = () => {
                         <p>
                           {selectedSeats.map(seat => (
                             <React.Fragment key={`${seat.seat}-${seat.row}`}>
-                              {`(${intToAlphabet(seat.seat)},${seat.row}) - Price: ${seat.price}`} 
+                              {`(${intToAlphabet(seat.row-1)},${seat.seat}) - Price: ${seat.price} DKK`} 
                               <br />
                             </React.Fragment>
                           ))}
                         </p>
-                        <button className="buy-button" onClick={buyTickets}>Buy Tickets</button>
-                        <button className="buy-button" onClick={reserveTickets}>Reserve Tickets</button>
+                        <div>
+                            <button className="buy-button" onClick={() => handleTickets('buy')}>Buy Tickets</button>
+                            <button className="buy-button" onClick={() => handleTickets('reserve')}>Reserve Tickets</button>
+                        </div>
                     </div>
                 </div>
             )}
