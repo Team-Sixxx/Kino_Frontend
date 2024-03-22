@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import useAxios from 'axios-hooks';
 import './MovieList.css'; 
 import { NavLink } from 'react-router-dom';
-import { useAxios } from 'use-axios-client'; 
+import useAxios from 'axios-hooks'; 
 
 
 function MovieList() {

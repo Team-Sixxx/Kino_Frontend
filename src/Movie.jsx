@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useParams, NavLink } from "react-router-dom";
 import { Typography, Button, Card, CardContent, Grid } from "@mui/material";
 import YouTube from "react-youtube";
-import { useAxios } from 'use-axios-client'; 
+import useAxios from 'axios-hooks'; 
 
 function Movie() {
   const { id } = useParams();
