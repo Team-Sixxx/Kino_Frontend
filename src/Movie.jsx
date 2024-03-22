@@ -2,28 +2,19 @@ import React, { useState, useEffect } from "react";
 import { useParams, NavLink } from "react-router-dom";
 import { Typography, Button, Card, CardContent, Grid } from "@mui/material";
 import YouTube from "react-youtube";
+import { useAxios } from 'use-axios-client'; // Import useAxios
 
 function Movie() {
   const { id } = useParams();
 
-  const [movie, setMovie] = useState({
-    title: "Mock Movie Title",
-    trailer: "U2Qp5pL3ovA",
-    description: "This is a mock movie description.",
-    genre: "Action",
-    ageRating: "PG-13",
-    movieRating: "7.5",
-    director: "Mock Director",
+  const { movie, loading, error, get } = useAxios({
+    url: `/films/${id}`,
+    method: 'GET'
   });
-
+  
   useEffect(() => {
-    //fetch(`https://api.example.com/movies/${movieId}`)
-    //setMovie(data)
+    get(); 
   }, [id]);
-
-  if (!movie) {
-    return <div>Loading...</div>;
-  }
 
   return (
     <Card sx={{ maxWidth: 1100, margin: "auto", marginTop: 10 }}>
