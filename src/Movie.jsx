@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useParams, NavLink } from "react-router-dom";
 import { Typography, Button, Card, CardContent, Grid } from "@mui/material";
 import YouTube from "react-youtube";
-import { useAxios } from 'use-axios-client'; // Import useAxios
+import { useAxios } from 'use-axios-client'; 
 
 function Movie() {
   const { id } = useParams();
@@ -11,7 +11,7 @@ function Movie() {
     url: `/films/${id}`,
     method: 'GET'
   });
-  
+
   useEffect(() => {
     get(); 
   }, [id]);
