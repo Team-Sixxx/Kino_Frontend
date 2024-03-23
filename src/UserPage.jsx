@@ -1,5 +1,5 @@
 import { useState } from "react";
-import FormDialog from "./FormDialog";
+import FormDialog from "./components/FormDialog";
 
 const UserPage = () => {
   const [userData, setUserData] = useState({
