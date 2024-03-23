@@ -1,8 +1,8 @@
 import { NavLink } from "react-router-dom";
-import { useAuth } from "./context/AuthProvider";
+// import { useAuth } from "./context/AuthProvider";
 
 export default function NavHeader() {
-  const auth = useAuth();
+  // const auth = useAuth();
   return (
     <nav className="nav-header">
       <ul>
