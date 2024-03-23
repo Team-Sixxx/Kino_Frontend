@@ -6,6 +6,7 @@ import Layout from "./Layout";
 import Home from "./Home";
 import Movies from "./Movies.jsx";
 import UserPage from "./UserPage.jsx";
+import { useAuth } from "./AuthProvider"; // Importer useAuth-hook'en
 
 //import MovieLayout from "./movie/MovieLayout"
 //import Movie from "./movie/Movie";
