@@ -11,10 +11,7 @@ export default function AuthProvider({ children }) {
   const initialUsername = localStorage.getItem("username") || null;
   const [username, setUsername] = useState(initialUsername);
 
-  const [
-    { data: postData, loading: postLoading, error: postError },
-    executePut,
-  ] = useAxios(
+  const [{ data: postData, loading: postLoading, error: postError }, executePut] = useAxios(
     {
       url: LOGIN_URL,
       method: "Post",

@@ -1,6 +1,6 @@
-import React from 'react';
-import NavHeader from './NavHeader';
-import './layout.css';
+import React from "react";
+import NavHeader from "./NavHeader";
+import "./layout.css";
 
 const Layout = ({ children }) => {
   return (
