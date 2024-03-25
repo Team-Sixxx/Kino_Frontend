@@ -3,9 +3,9 @@ import { Tooltip, Toast, Popover } from "bootstrap";
 import useAxios from "axios-hooks";
 import MovieCalendar from "./components/calendar";
 import { API_URL } from "./settings";
-import { Skeleton } from "@mui/material";
+import { Skeleton, Button, Divider } from "@mui/material";
 import { Watch } from "@mui/icons-material";
-import Divider from "@mui/material/Divider";
+
 import "./home.css";
 
 export default function Home() {
@@ -45,6 +45,17 @@ export default function Home() {
     execute(SCREENINGS_URL);
   }, [SCREENINGS_URL]);
 
+  function getFormattedDate() {
+    const currentDate = new Date();
+    return `${currentDate.getFullYear()}-${String(
+      currentDate.getMonth() + 1
+    ).padStart(2, "0")}-${String(currentDate.getDate()).padStart(2, "0")}`;
+  }
+
+  const handleReload = () => {
+    const currentDate = getFormattedDate();
+    setStartDate(currentDate);
+  };
   return (
     <div className="container-fluid">
       <div className="row justify-content-center p-5 mt-5">
@@ -65,23 +76,35 @@ export default function Home() {
               />
             </video>
           </div>
-          <h1 className="text-center">Todays program</h1>
+
           <Divider component="li" style={{ listStyle: "none" }} />
           {(postLoading && !postError) || postError ? (
-            <Skeleton
-              variant="rectangular"
-              style={{ width: "100%", height: "40vh" }}
-            />
+            <>
+              <h1 className="text-center">No movies on selected date</h1>
+              <div className="text-center">
+                <Button onClick={handleReload} variant="contained">
+                  Go back to todays program
+                </Button>
+              </div>
+
+              <Skeleton
+                variant="rectangular"
+                style={{ width: "100%", height: "40vh" }}
+              />
+            </>
           ) : (
             // Render a MovieCalendar component for each set of screenings
             Object.entries(films).map(([filmId, screenings]) => (
-              <MovieCalendar
-                key={filmId}
-                data={screenings}
-                startDateProp={startDate}
-                setStartDateProp={setStartDate}
-                useTrailer={true}
-              />
+              <>
+                <h1 className="text-center">Todays program</h1>
+                <MovieCalendar
+                  key={filmId}
+                  data={screenings}
+                  startDateProp={startDate}
+                  setStartDateProp={setStartDate}
+                  useTrailer={true}
+                />
+              </>
             ))
           )}
         </div>
