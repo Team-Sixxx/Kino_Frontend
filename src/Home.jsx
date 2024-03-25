@@ -76,7 +76,14 @@ export default function Home() {
               />
             </video>
           </div>
-
+          {(postLoading && !postError) || postError ? (
+            <></>
+          ) : (
+            <>
+              {" "}
+              <h1 className="text-center">Todays program</h1>
+            </>
+          )}
           <Divider component="li" style={{ listStyle: "none" }} />
           {(postLoading && !postError) || postError ? (
             <>
@@ -93,10 +100,8 @@ export default function Home() {
               />
             </>
           ) : (
-            // Render a MovieCalendar component for each set of screenings
             Object.entries(films).map(([filmId, screenings]) => (
               <>
-                <h1 className="text-center">Todays program</h1>
                 <MovieCalendar
                   key={filmId}
                   data={screenings}
