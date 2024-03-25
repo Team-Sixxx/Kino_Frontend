@@ -6,7 +6,7 @@ import { API_URL } from "./settings";
 import { Skeleton } from "@mui/material";
 import { Watch } from "@mui/icons-material";
 import Divider from "@mui/material/Divider";
-
+import "./home.css";
 
 export default function Home() {
   const currentDate = new Date();
@@ -49,7 +49,8 @@ export default function Home() {
     <div className="container-fluid">
       <div className="row justify-content-center p-5 mt-5">
         <div className="col-md-12">
-          <div className="video-container">     {" "}
+          <div className="video-container">
+            {" "}
             <video
               className="full-screen-video"
               width="100%"
