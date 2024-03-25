@@ -6,9 +6,10 @@ import { Box, Button, Divider, Card, Fab } from "@mui/material";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import moment from "moment";
+
 import "./calendar.css";
 
-const MovieCalendar = ({ data }) => {
+const MovieCalendar = ({ data, startDateProp, setStartDateProp }) => {
   const [startDate, setStartDate] = useState(new Date());
 
   const renderColumns = () => {
@@ -30,6 +31,7 @@ const MovieCalendar = ({ data }) => {
 
       columns.push(
         <Col className="d-inline p-2" key={currentDate.toDateString()}>
+          <Divider orientation="vertical" variant="middle" flexItem />
           <h4>{currentDate.toDateString()}</h4>
 
           <ul>
@@ -82,7 +84,11 @@ const MovieCalendar = ({ data }) => {
           <DatePicker
             className="react-datepicker__day.react-datepicker__day--today"
             selected={startDate}
-            onChange={(date) => setStartDate(date)}
+            onChange={(date) => {
+              const formattedDate = date.toISOString().slice(0, 10); // Format date as yyyy-mm-dd
+              setStartDate(formattedDate); // Update local state
+              setStartDateProp(formattedDate); // Update parent state
+            }}
           />
         </Col>
         <Col className="col-lg-10">

@@ -6,7 +6,16 @@ import { API_URL } from "./settings";
 import { Skeleton } from "@mui/material";
 
 export default function Home() {
-  const SCREENINGS_URL = API_URL + "/api/film/screenings/1";
+  const currentDate = new Date();
+  const formattedDate = `${currentDate.getFullYear()}-${String(
+    currentDate.getMonth() + 1
+  ).padStart(2, "0")}-${String(currentDate.getDate()).padStart(2, "0")}`;
+
+  const [startDate, setStartDate] = useState(formattedDate);
+
+  const SCREENINGS_URL = `${API_URL}/api/film/screenings?startDate=${encodeURIComponent(
+    startDate
+  )}`;
 
   const [
     { data: screenings, loading: postLoading, error: postError },
@@ -15,7 +24,7 @@ export default function Home() {
 
   useEffect(() => {
     execute(SCREENINGS_URL);
-  }, []); // Ensure that the effect runs only once, when the component mounts
+  }, [SCREENINGS_URL]);
 
   return (
     <div className="container-fluid">
@@ -39,7 +48,11 @@ export default function Home() {
           {postLoading ? (
             <Skeleton variant="rectangular" width={610} height={318} />
           ) : (
-            <MovieCalendar data={screenings} />
+            <MovieCalendar
+              data={screenings}
+              startDateProp={startDate}
+              setStartDateProp={setStartDate}
+            />
           )}
         </div>
       </div>
