@@ -12,11 +12,11 @@ function Movie() {
   const [{ data, loading, error }, execute] = useAxios();
 
   useEffect(() => {
+    const token = localStorage.getItem("token");
     execute(`${API_URL}/api/films/${id}`);
   }, []);
 
   if (data !== undefined) {
-    console.log(data.movieTrailer);
     return (
       <div>
         {loading ? (
@@ -27,7 +27,9 @@ function Movie() {
           <>
             <Card sx={{ maxWidth: 1100, margin: "auto", marginTop: 10 }}>
               <YouTube
-                videoId={data.movieTrailer.split("https://www.youtube.com/watch?v=")[1]}
+                videoId={
+                  data.movieTrailer.split("https://www.youtube.com/watch?v=")[1]
+                }
                 opts={{
                   width: "100%",
                   height: 619,
@@ -57,8 +59,14 @@ function Movie() {
                 </Typography>
                 <Grid container justifyContent="center">
                   <Grid item>
-                    <NavLink to={`/select/${id}`} style={{ textDecoration: "none" }}>
-                      <Button variant="contained" sx={{ backgroundColor: "darkred", color: "white" }}>
+                    <NavLink
+                      to={`/select/${id}`}
+                      style={{ textDecoration: "none" }}
+                    >
+                      <Button
+                        variant="contained"
+                        sx={{ backgroundColor: "darkred", color: "white" }}
+                      >
                         Select Seats
                       </Button>
                     </NavLink>

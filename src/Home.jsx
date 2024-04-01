@@ -3,6 +3,7 @@ import { Tooltip, Toast, Popover } from "bootstrap";
 
 import useAxios from "axios-hooks";
 import MovieCalendar from "./components/calendar";
+import DatePicker from "react-datepicker";
 import { API_URL } from "./settings";
 import { Skeleton, Button, Divider } from "@mui/material";
 import { Watch } from "@mui/icons-material";
@@ -60,7 +61,7 @@ export default function Home() {
   return (
     <div className="container-fluid">
       <div className="row justify-content-center p-5 mt-5">
-        <div className="col-md-12">
+        <div className="col-md-12" key={3}>
           <div className="video-container">
             {" "}
             <video
@@ -88,11 +89,20 @@ export default function Home() {
           <Divider component="li" style={{ listStyle: "none" }} />
           {(postLoading && !postError) || postError ? (
             <>
-              <h1 className="text-center">No movies on selected date</h1>
+              <h1 className="text-center">No movies running on {startDate}</h1>
               <div className="text-center">
                 <Button onClick={handleReload} variant="contained">
-                  Go back to todays program
+                  Click to reload program
                 </Button>
+                <h2 color="grey">Select a different date here</h2>
+                <DatePicker
+                  className="react-datepicker__day.react-datepicker__day--today"
+                  selected={startDate}
+                  onChange={(date) => {
+                    const formattedDate = date.toISOString().slice(0, 10);
+                    setStartDate(formattedDate);
+                  }}
+                />
               </div>
 
               <Skeleton

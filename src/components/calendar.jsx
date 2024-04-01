@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { Container, Row, Col } from "react-bootstrap";
+import { NavLink } from "react-router-dom";
 import { Box, Button, Divider, Card, Fab } from "@mui/material";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
@@ -27,6 +28,7 @@ const MovieCalendar = ({
 
       const itemsForColumn = data.filter((item) => {
         const itemDate = new Date(item.startTime);
+        console.log(item, "item");
         //console.log(item);
         return (
           itemDate.getDate() === currentDate.getDate() &&
@@ -49,29 +51,35 @@ const MovieCalendar = ({
                   flexItem
                   color="red"
                 />
-                <Box
-                  className="shadow p-3 rounded mb-0 mt-0"
-                  my={4}
-                  display="flex"
-                  alignItems="center"
-                  gap={0}
-                  p={0}
-                  sx={{
-                    width: 100,
-                    height: 100,
-                    borderRadius: 1,
-                    bgcolor: "#00D100",
-                    "&:hover": {
-                      bgcolor: "green.dark",
-                    },
-                  }}
+
+                <NavLink
+                  style={{ textDecoration: "none", color: "black" }}
+                  to={"/movie/" + item.film.filmId}
                 >
-                  <Row>
-                    <h6>Bio{item.theater.theaterId}</h6>
-                    <h6>{moment(item.startTime).format("LT")}</h6>
-                    <h7> 2D</h7>
-                  </Row>
-                </Box>
+                  <Box
+                    className="shadow p-3 rounded mb-0 mt-0"
+                    my={4}
+                    display="flex"
+                    alignItems="center"
+                    gap={0}
+                    p={0}
+                    sx={{
+                      width: 100,
+                      height: 100,
+                      borderRadius: 1,
+                      bgcolor: "#00D100",
+                      "&:hover": {
+                        bgcolor: "green.dark",
+                      },
+                    }}
+                  >
+                    <Row>
+                      <h6>Bio{item.theater.theaterId}</h6>
+                      <h6>{moment(item.startTime).format("LT")}</h6>
+                      <h7> 2D</h7>
+                    </Row>
+                  </Box>
+                </NavLink>
               </div>
             ))}
           </ul>
