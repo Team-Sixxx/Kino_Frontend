@@ -5,6 +5,7 @@
     position: fixed;
     top: 0;
     left: 0;
+    z-index: 555;
     
     right: 0;
     background: linear-gradient(to bottom right, #555, #333); /* Example gradient from red to yellow */

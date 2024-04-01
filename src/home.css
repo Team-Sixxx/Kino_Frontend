@@ -13,6 +13,12 @@
   left: 0%;
   transition: transform 0.3s ease-in-out; 
 }
+h1 {
+  color: grey !important;
+}
+h4 {
+  color: grey !important;
+}
 
 .box video {
   top: 0;

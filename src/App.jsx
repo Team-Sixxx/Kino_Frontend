@@ -9,8 +9,7 @@ import Home from "./Home";
 import Movies from "./Movies.jsx";
 import SeatSelectorPage from "./SeatSelectorPage.jsx";
 import "./scss/styles.scss";
-//import MovieLayout from "./movie/MovieLayout"
-//import Movie from "./movie/Movie";
+import Movie from "./Movie";
 
 //import Login from "./security/Login";
 //import Logout from "./security/Logout"
@@ -22,6 +21,7 @@ export default function App() {
         <Route path="/" element={<Home />} />
         <Route path="/movies/" element={<Movies />} />
         <Route path="/select/:id" element={<SeatSelectorPage />} />
+        <Route path="/movie/:id" element={<Movie />} />
         <Route path="*" element={<h2>Not Found</h2>} />
         <Route path="/login" element={<Login />} />
         <Route path="/logout" element={<Logout />} />
@@ -29,10 +29,6 @@ export default function App() {
     </Layout>
   );
 }
-
-//<Route path="/movie" element={<MovieLayout/>}>
-//  <Route path=":id" element={<Movie />} />
-//</Route>
 
 //<Route path="/login" element={<Login />} />
 //<Route path="/logout" element={<Logout />} />
