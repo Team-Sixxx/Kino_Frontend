@@ -12,9 +12,11 @@
   "dependencies": {
     "@emotion/react": "^11.11.4",
     "@emotion/styled": "^11.11.0",
+
     "@mui/icons-material": "^5.15.14",
     "@mui/material": "^5.15.14",
     "@u-wave/react-vimeo": "^0.9.10",
+    "axios": "^1.6.8",
     "axios-hooks": "^5.0.2",
     "bootstrap": "^5.3.3",
     "moment": "^2.30.1",
