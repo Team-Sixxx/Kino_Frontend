@@ -20,18 +20,19 @@ const SeatSelector = ({ numRows, numSeatsPerRow, seatsStatus, onSeatSelect }) =>
     
 
     const renderSeats = () => {
+        const role = localStorage.getItem("role");
         const seats = [];
         for (let row = 1; row < numSeatsPerRow+1; row++) {
             const rowSeats = [];
             for (let seat = 1; seat < numRows+1; seat++) {
                 const key = `${row},${seat}`;
 
-                if (role === admin){
+                if (role === "admin"){
                     rowSeats.push(
                         <div
                             key={key}
                             className={`seat ${selectedSeats.some(selectedSeat => selectedSeat.seat === row && selectedSeat.row === seat) ? 'selected' : ''}`}
-                            onClick={() => handleSeatClick(row, seat, seatsStatus[key].price)} 
+                            onClick={() => handleSeatClick(row, seat, 100)}
                         >
                             {row}
                         </div>
@@ -62,7 +63,7 @@ const SeatSelector = ({ numRows, numSeatsPerRow, seatsStatus, onSeatSelect }) =>
                         <div
                             key={key}
                             className={`seat ${selectedSeats.some(selectedSeat => selectedSeat.seat === row && selectedSeat.row === seat) ? 'selected' : ''}`}
-                            onClick={() => handleSeatClick(row, seat, seatsStatus[key].price)} 
+                            onClick={() => handleSeatClick(row, seat, 100)}
                         >
                             {row}
                         </div>

@@ -17,6 +17,7 @@ function Movie() {
   }, []);
 
   if (data !== undefined) {
+    console.log(data, "data");
     return (
       <div>
         {loading ? (
