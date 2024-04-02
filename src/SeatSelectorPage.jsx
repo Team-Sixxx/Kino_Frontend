@@ -14,7 +14,6 @@ const SeatSelectorPage = () => {
   }, []);
 
   // Find hvad data der er rigtigt til at vide row og sæder
-  console.log(data);
   const [selectedSeats, setSelectedSeats] = useState([]);
   const [showPopup, setShowPopup] = useState(false);
 
@@ -54,10 +53,11 @@ const SeatSelectorPage = () => {
       console.error(`Error ${action === "buy" ? "buying" : "reserving"} tickets:`, error);
     }
   };
-
+  if (data !== undefined) {
+    console.log(data[0], "data");
   return (
     <div>
-      <SeatSelector numRows={numRows} numSeatsPerRow={numSeatsPerRow} seatsStatus={data} onSeatSelect={handleSeatSelect} />
+      <SeatSelector numRows={data[0].screening.theater.numberOfRows} numSeatsPerRow={data[0].screening.theater.seatsPerRow} seatsStatus={data} onSeatSelect={handleSeatSelect} />
       {showPopup && (
         <div className="popup slideout-right">
           <div className="popup-content">
@@ -69,7 +69,7 @@ const SeatSelectorPage = () => {
             <p>
               {selectedSeats.map((seat) => (
                 <React.Fragment key={`${seat.seat}-${seat.row}`}>
-                  {`(${intToAlphabet(seat.row - 1)},${seat.seat}) - Price: ${seat.price} DKK`}
+                  {`(${intToAlphabet(seat.row - 1)},${seat.seat}) - Price: 100 DKK`}
                   <br />
                 </React.Fragment>
               ))}
@@ -87,6 +87,7 @@ const SeatSelectorPage = () => {
       )}
     </div>
   );
+  }
 };
 
 export default SeatSelectorPage;

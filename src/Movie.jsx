@@ -13,10 +13,11 @@ function Movie() {
 
   useEffect(() => {
     const token = localStorage.getItem("token");
-    execute(`${API_URL}/api/films/${id}`);
+    execute(`${API_URL}/api/screenings/${id}`);
   }, []);
 
   if (data !== undefined) {
+    console.log(data, "data");
     return (
       <div>
         {loading ? (
@@ -28,7 +29,7 @@ function Movie() {
             <Card sx={{ maxWidth: 1100, margin: "auto", marginTop: 10 }}>
               <YouTube
                 videoId={
-                  data.movieTrailer.split("https://www.youtube.com/watch?v=")[1]
+                  data[0].film.movieTrailer.split("https://www.youtube.com/watch?v=")[1]
                 }
                 opts={{
                   width: "100%",
@@ -40,22 +41,22 @@ function Movie() {
               />
               <CardContent>
                 <Typography variant="h3" gutterBottom textAlign={"center"}>
-                  {data.title}
+                  {data[0].film.title}
                 </Typography>
                 <Typography variant="body1" paragraph textAlign={"center"}>
-                  {data.description}
+                  {data[0].film.description}
                 </Typography>
                 <Typography variant="body2" gutterBottom textAlign={"center"}>
-                  Genre: {data.genre}
+                  Genre: {data[0].film.genre}
                 </Typography>
                 <Typography variant="body2" gutterBottom textAlign={"center"}>
-                  Age Rating: {data.ageRating}
+                  Age Rating: {data[0].film.ageRating}
                 </Typography>
                 <Typography variant="body2" gutterBottom textAlign={"center"}>
-                  Movie Rating: {data.movieRating}
+                  Movie Rating: {data[0].film.movieRating}
                 </Typography>
                 <Typography variant="body2" gutterBottom textAlign={"center"}>
-                  Director: {data.director}
+                  Director: {data[0].film.director}
                 </Typography>
                 <Grid container justifyContent="center">
                   <Grid item>
