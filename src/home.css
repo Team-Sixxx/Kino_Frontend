@@ -11,7 +11,7 @@
   position: absolute;
   width: 100%;
   left: 0%;
-  transition: transform 0.3s ease-in-out; /* Add transition for smooth effect */
+  transition: transform 0.3s ease-in-out; 
 }
 h1 {
   color: grey !important;
@@ -29,7 +29,7 @@ h4 {
 }
 
 .box video:hover {
-  filter: brightness(0.7); /* Darken the box */
+  filter: brightness(0.7); 
 }
 .react-player {
   position: absolute;

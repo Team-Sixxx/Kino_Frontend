@@ -1,0 +1,38 @@
+.seat-selector {
+    text-align: center;
+}
+
+.seat-grid {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: center;
+}
+.buy-menu {
+    display: flex;
+    justify-content: right;
+}
+
+.seat {
+    width: 3em;
+    height: 3em;
+    margin: 0.3125em; 
+    background-color: green;
+    border: 0.0625em solid #ccc; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+
+}
+
+.seat.selected {
+    background-color: rgb(159, 27, 247);
+}
+
+.seat.taken {
+    background-color: rgb(247, 27, 27);
+}
+
+.seat.una {
+    background-color: rgb(103, 63, 63);
+}
