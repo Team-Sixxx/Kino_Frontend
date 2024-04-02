@@ -1,10 +1,10 @@
 import "./App.css";
 import { Route, Routes } from "react-router-dom";
 import Layout from "./Layout";
-
+import RoleChecker from "./components/RoleChecker.jsx";
 import Login from "./components/Login.jsx";
 import Logout from "./components/logout.jsx";
-
+import AdminPanel from "./components/adminPanel.jsx";
 import Home from "./Home";
 import Movies from "./Movies.jsx";
 import SeatSelectorPage from "./SeatSelectorPage.jsx";
@@ -25,6 +25,14 @@ export default function App() {
         <Route path="*" element={<h2>Not Found</h2>} />
         <Route path="/login" element={<Login />} />
         <Route path="/logout" element={<Logout />} />
+        <Route
+          path="/admin"
+          element={
+            <RoleChecker roles={["ADMIN"]}>
+              <AdminPanel />
+            </RoleChecker>
+          }
+        />
       </Routes>
     </Layout>
   );

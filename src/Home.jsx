@@ -1,13 +1,10 @@
 import React, { useEffect, useState, watch } from "react";
-import { Tooltip, Toast, Popover } from "bootstrap";
-
 
 import useAxios from "axios-hooks";
 import MovieCalendar from "./components/calendar";
 import DatePicker from "react-datepicker";
 import { API_URL } from "./settings";
 import { Skeleton, Button, Divider } from "@mui/material";
-import { Watch } from "@mui/icons-material";
 
 import "./home.css";
 
@@ -91,6 +88,7 @@ export default function Home() {
           {(postLoading && !postError) || postError ? (
             <>
               <h1 className="text-center">No movies running on {startDate}</h1>
+
               <div className="text-center">
                 <Button onClick={handleReload} variant="contained">
                   Click to reload program

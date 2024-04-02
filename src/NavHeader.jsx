@@ -32,6 +32,9 @@ export default function NavHeader() {
             <li>
               <NavLink to="/logout">Logout</NavLink>
             </li>
+            <li>
+              <NavLink to="/admin">Admin panel</NavLink>
+            </li>
           </>
         )}
       </ul>

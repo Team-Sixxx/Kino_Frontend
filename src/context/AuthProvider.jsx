@@ -9,7 +9,11 @@ const AuthContext = createContext(null);
 export default function AuthProvider({ children }) {
   const LOGIN_URL = API_URL + "/api/auth/login";
   const initialUsername = localStorage.getItem("username") || null;
+  const initialToken = localStorage.getItem("token") || null;
+  const initialRoles = JSON.parse(localStorage.getItem("roles")) || null;
   const [username, setUsername] = useState(initialUsername);
+  const [roles, setUserRoles] = useState(initialRoles);
+  const [token, setUserToken] = useState(initialToken);
 
   const [
     { data: postData, loading: postLoading, error: postError },
@@ -25,6 +29,9 @@ export default function AuthProvider({ children }) {
   const signIn = async (user_) => {
     await executePut({ data: user_ }).then((data) => {
       setUsername(data.data.username);
+      console.log(JSON.stringify(data.data.roles));
+      setUserRoles(JSON.stringify(data.data.roles));
+      setUserToken(data.data.token);
       localStorage.setItem("username", data.data.username);
       localStorage.setItem("roles", JSON.stringify(data.data.roles));
       localStorage.setItem("token", data.data.token);
@@ -50,7 +57,15 @@ export default function AuthProvider({ children }) {
     return roles?.some((r) => role.includes(r)) || false;
   }
 
-  const value = { username, isLoggedIn, isLoggedInAs, signIn, signOut };
+  const value = {
+    username,
+    isLoggedIn,
+    isLoggedInAs,
+    signIn,
+    signOut,
+    roles,
+    token,
+  };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 }
