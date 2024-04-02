@@ -55,6 +55,14 @@
   margin-top: -1rem;
 }
 
+  .nav-header ul li a.active {
+    text-decoration: underline;
+  }
+  
+  .page-content {
+    margin-top: 5rem;
+}
+
 .app-layout {
   margin: 0%;
 }
