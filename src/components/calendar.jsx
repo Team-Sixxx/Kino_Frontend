@@ -54,7 +54,7 @@ const MovieCalendar = ({
 
                 <NavLink
                   style={{ textDecoration: "none", color: "black" }}
-                  to={"/movie/" + item.film.filmId}
+                  to={"/movie/" + item.screeningId}
                 >
                   <Box
                     className="shadow p-3 rounded mb-0 mt-0"
